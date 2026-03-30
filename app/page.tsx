@@ -39,7 +39,7 @@ body{background:var(--bg)!important;color:var(--ink);font-family:var(--body);fon
 .cursor{display:inline-block;width:8px;height:1em;background:var(--accent);animation:blink 1s step-end infinite;vertical-align:text-bottom;margin-left:2px}
 h1{font-family:var(--heading);font-size:clamp(3.2rem,9vw,6rem);font-weight:800;line-height:.95;letter-spacing:-.02em;margin-bottom:.25rem}
 .nf{color:var(--ink)}
-.nl{color:transparent;-webkit-text-stroke:1px var(--accent);text-shadow:0 0 40px var(--accent-glow);position:relative}
+.nl{color:var(--accent);-webkit-text-stroke:none;text-shadow:0 0 40px var(--accent-glow),0 0 80px rgba(0,255,136,0.08);position:relative}
 .nl::before,.nl::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;font-family:var(--heading);font-size:inherit;font-weight:800}
 .nl::before{color:var(--accent2);clip-path:polygon(0 30%,100% 30%,100% 50%,0 50%);animation:g1 4s infinite linear;opacity:.6}
 .nl::after{color:var(--red);clip-path:polygon(0 60%,100% 60%,100% 80%,0 80%);animation:g2 4s infinite linear;opacity:.6}
@@ -122,6 +122,10 @@ footer{border-top:1px solid var(--border);padding:2rem 0 3rem;text-align:center}
       `}} />
       <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet"/>
       <div className="loader-screen" id="loader">
+        <h1 style={{fontFamily:'var(--heading)',fontSize:'clamp(2rem,6vw,3.5rem)',fontWeight:800,lineHeight:'.95',letterSpacing:'-.02em',marginBottom:'2rem',textAlign:'center'} as React.CSSProperties}>
+          <div style={{color:'var(--ink)'}}>TRAVIS M.</div>
+          <div style={{color:'var(--accent)'}}>KIRBY</div>
+        </h1>
         <div className="loader-text">&gt; loading profile...</div>
         <div className="loader-bar-wrap"><div className="loader-bar" id="loader-bar" /></div>
         <div className="loader-lines" id="loader-lines">
