@@ -22,6 +22,18 @@ body{background:var(--bg)!important;color:var(--ink);font-family:var(--body);fon
 .loader-lines{margin-top:1.5rem;font-family:var(--mono);font-size:.72rem;color:var(--muted);text-align:left;width:280px;line-height:1.9}
 .loader-lines span{display:block;opacity:0;transition:opacity .2s}
 .loader-lines span.visible{opacity:1}
+/* modal */
+.modal-overlay{position:fixed;inset:0;z-index:10001;background:rgba(8,11,15,.92);display:none;align-items:center;justify-content:center;animation:fadeModal .3s ease}
+.modal-overlay.open{display:flex}
+@keyframes fadeModal{from{opacity:0}to{opacity:1}}
+.modal-box{background:var(--bg2);border:1px solid var(--accent);box-shadow:0 0 30px var(--accent-glow),0 0 60px rgba(0,255,136,.05);width:90vw;max-width:800px;height:85vh;display:flex;flex-direction:column;position:relative}
+.modal-bar{display:flex;align-items:center;padding:.6rem 1rem;border-bottom:1px solid var(--border);gap:.5rem;flex-shrink:0}
+.modal-bar .dot{width:8px;height:8px}
+.modal-title{font-family:var(--mono);font-size:.8rem;color:var(--muted);margin-left:.5rem;letter-spacing:.06em;flex:1}
+.modal-close{font-family:var(--mono);font-size:.9rem;color:var(--muted);background:none;border:1px solid var(--border);padding:.2rem .7rem;cursor:pointer;transition:color .2s,border-color .2s;letter-spacing:.06em}
+.modal-close:hover{color:var(--accent);border-color:var(--accent)}
+.modal-body{flex:1;overflow:hidden}
+.modal-body iframe{width:100%;height:100%;border:none;background:var(--bg)}
 .scanlines{position:fixed;inset:0;z-index:999;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.08) 2px,rgba(0,0,0,.08) 4px)}
 .grid-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(0,255,136,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,136,.03) 1px,transparent 1px);background-size:40px 40px}
 .floating-cursor{position:fixed;right:2.5rem;top:-100px;width:10px;height:22px;background:var(--accent);z-index:998;pointer-events:none;animation:blink 1s step-end infinite;box-shadow:0 0 12px var(--accent-glow),0 0 4px var(--accent);opacity:0;transition:none}
@@ -139,6 +151,18 @@ footer{border-top:1px solid var(--border);padding:2rem 0 3rem;text-align:center}
           <span>done.</span>
         </div>
       </div>
+      <div className="modal-overlay" id="cert-modal">
+        <div className="modal-box">
+          <div className="modal-bar">
+            <div className="dot dr" /><div className="dot dy" /><div className="dot dg" />
+            <span className="modal-title" id="modal-title">certificate</span>
+            <button className="modal-close" id="modal-close">[ close ]</button>
+          </div>
+          <div className="modal-body">
+            <iframe id="modal-iframe" title="Certificate viewer" />
+          </div>
+        </div>
+      </div>
       <div className="scanlines" />
       <div className="grid-bg" />
       <div className="floating-cursor" />
@@ -206,8 +230,8 @@ footer{border-top:1px solid var(--border);padding:2rem 0 3rem;text-align:center}
           <div className="certs-grid">
             <div className="cg-label">// Earned</div>
             <a className="cc" href="#" title="View certificate"><div className="cc-left"><div className="cc-icon">🎓</div><div><div className="cc-name">Cyber Forensics Intro</div><div className="cc-meta"><span className="cc-issuer">Great Learning</span><span className="cc-tier">T4</span></div></div></div><span className="cc-status st-e">Earned</span></a>
-            <a className="cc" href="/certs/disco-data-management.pdf" target="_blank" rel="noopener noreferrer" title="View certificate"><div className="cc-left"><div className="cc-icon">⚖️</div><div><div className="cc-name">DISCO Data Management</div><div className="cc-meta"><span className="cc-issuer">DISCO University</span><span className="cc-tier">Legal Tech</span></div></div></div><span className="cc-status st-e">Earned</span></a>
-            <a className="cc" href="/certs/disco-search-review.pdf" target="_blank" rel="noopener noreferrer" title="View certificate"><div className="cc-left"><div className="cc-icon">⚖️</div><div><div className="cc-name">DISCO Search &amp; Review</div><div className="cc-meta"><span className="cc-issuer">DISCO University</span><span className="cc-tier">Legal Tech</span></div></div></div><span className="cc-status st-e">Earned</span></a>
+            <a className="cc" href="#" onClick={(e) => e.preventDefault()} data-cert="/certs/disco-data-management.pdf" data-certtitle="DISCO Data Management Certificate" title="View certificate"><div className="cc-left"><div className="cc-icon">⚖️</div><div><div className="cc-name">DISCO Data Management</div><div className="cc-meta"><span className="cc-issuer">DISCO University</span><span className="cc-tier">Legal Tech</span></div></div></div><span className="cc-status st-e">Earned</span></a>
+            <a className="cc" href="#" onClick={(e) => e.preventDefault()} data-cert="/certs/disco-search-review.pdf" data-certtitle="DISCO Search &amp; Review Certificate" title="View certificate"><div className="cc-left"><div className="cc-icon">⚖️</div><div><div className="cc-name">DISCO Search &amp; Review</div><div className="cc-meta"><span className="cc-issuer">DISCO University</span><span className="cc-tier">Legal Tech</span></div></div></div><span className="cc-status st-e">Earned</span></a>
             <div className="cg-label">// In Progress</div>
             <div className="cc ip"><div className="cc-left"><div className="cc-icon">📜</div><div><div className="cc-name">California Paralegal Certificate</div><div className="cc-meta"><span className="cc-issuer">Cal State LA</span><span className="cc-tier">Legal</span></div></div></div><span className="cc-status st-ip">In Progress</span></div>
             <div className="cg-label">// Planned</div>
@@ -326,6 +350,35 @@ footer{border-top:1px solid var(--border);padding:2rem 0 3rem;text-align:center}
         advanceLoader();
 
         document.querySelector('.terminal-input-wrap').addEventListener('click', function() { termInput.focus(); });
+
+        // Certificate modal
+        var modal = document.getElementById('cert-modal');
+        var modalIframe = document.getElementById('modal-iframe');
+        var modalTitle = document.getElementById('modal-title');
+        var modalClose = document.getElementById('modal-close');
+
+        document.querySelectorAll('[data-cert]').forEach(function(el) {
+          el.addEventListener('click', function(e) {
+            e.preventDefault();
+            var src = this.getAttribute('data-cert');
+            var title = this.getAttribute('data-certtitle') || 'Certificate';
+            modalIframe.src = src;
+            modalTitle.textContent = title;
+            modal.classList.add('open');
+          });
+        });
+
+        modalClose.addEventListener('click', function() {
+          modal.classList.remove('open');
+          modalIframe.src = '';
+        });
+
+        modal.addEventListener('click', function(e) {
+          if (e.target === modal) {
+            modal.classList.remove('open');
+            modalIframe.src = '';
+          }
+        });
 
         // Floating cursor — snaps to every rendered text row
         var fc = document.querySelector('.floating-cursor');
