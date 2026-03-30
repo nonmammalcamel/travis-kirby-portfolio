@@ -323,39 +323,71 @@ footer{border-top:1px solid var(--border);padding:2rem 0 3rem;text-align:center}
 
         document.querySelector('.terminal-input-wrap').addEventListener('click', function() { termInput.focus(); });
 
-        // Floating cursor — sits at 1/3 screen height, snaps vertically
-        // to whichever text box is crossing that line
+        // Floating cursor — snaps to every rendered text row
         var fc = document.querySelector('.floating-cursor');
         var wrapEl = document.querySelector('.wrap');
-        var lastBox = null;
+        var lastLineIdx = -1;
+
+        function getRenderedLines() {
+          var textEls = document.querySelectorAll('.about-text p, .role, .d-label, .d-value, .skills-cat, .skill-name, .skill-level, .cc-name, .cc-issuer, .cg-label, .ref-name, .ref-title, .ref-org, .ref-avail, .contact-text, .cr-label, .cr-value, .ti-label, .sn, h2, .fc span');
+          var lines = [];
+          textEls.forEach(function(el) {
+            var rect = el.getBoundingClientRect();
+            var lineH = parseFloat(getComputedStyle(el).lineHeight) || 28;
+            var numLines = Math.round(rect.height / lineH);
+            for (var i = 0; i < numLines; i++) {
+              var y = rect.top + window.scrollY + (i * lineH) + (lineH / 2);
+              lines.push(y);
+            }
+          });
+          lines.sort(function(a, b) { return a - b; });
+          // dedupe lines within 5px of each other
+          var deduped = [lines[0]];
+          for (var i = 1; i < lines.length; i++) {
+            if (lines[i] - deduped[deduped.length - 1] > 5) {
+              deduped.push(lines[i]);
+            }
+          }
+          return deduped;
+        }
+
+        var renderedLines = [];
+        var linesReady = false;
+        setTimeout(function() {
+          renderedLines = getRenderedLines();
+          linesReady = true;
+        }, 500);
+
+        var resizeTimer;
+        window.addEventListener('resize', function() {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(function() { renderedLines = getRenderedLines(); }, 300);
+        });
 
         window.addEventListener('scroll', function() {
+          if (!linesReady) return;
           var scrollY = window.scrollY;
-          if (scrollY < 80) { fc.style.opacity = '0'; return; }
+          if (scrollY < 80) { fc.style.opacity = '0'; lastLineIdx = -1; return; }
 
           fc.style.opacity = '1';
-          var scanLine = window.innerHeight / 3;
-          var boxes = document.querySelectorAll('.snap-line, .d-item, .skill-row, .cc, .cg-label, .ref-card, .contact-row, .sh, .role, .ti-row');
-          var snapped = false;
+          var scanLine = scrollY + window.innerHeight / 3;
+          var wrapRect = wrapEl.getBoundingClientRect();
+          fc.style.left = wrapRect.right + 7 + 'px';
 
-          for (var i = 0; i < boxes.length; i++) {
-            var rect = boxes[i].getBoundingClientRect();
-            if (rect.top <= scanLine && rect.bottom >= scanLine) {
-              if (boxes[i] !== lastBox) {
-                lastBox = boxes[i];
-                var mid = rect.top + rect.height / 2;
-                fc.style.top = mid - 11 + 'px';
-                var wrapRect = wrapEl.getBoundingClientRect();
-                fc.style.left = wrapRect.right + 7 + 'px';
-              }
-              snapped = true;
-              break;
+          // find closest line
+          var closest = 0;
+          var closestDist = Math.abs(scanLine - renderedLines[0]);
+          for (var i = 1; i < renderedLines.length; i++) {
+            var dist = Math.abs(scanLine - renderedLines[i]);
+            if (dist < closestDist) {
+              closest = i;
+              closestDist = dist;
             }
           }
 
-          if (!snapped) {
-            fc.style.opacity = '0';
-            lastBox = null;
+          if (closest !== lastLineIdx) {
+            lastLineIdx = closest;
+            fc.style.top = (renderedLines[closest] - scrollY - 11) + 'px';
           }
         });
       `}} />
