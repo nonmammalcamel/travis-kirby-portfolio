@@ -1,148 +1,33 @@
 /* eslint-disable react/no-danger */
 export default function Home() {
-  const html = `<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Travis M. Kirby — Interactive Resume</title>
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet"/>
-</head>
-<body>
-<div class="scanlines"></div>
-<div class="grid-bg"></div>
-<div class="tbar">
-  <div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div>
-  <span class="tbar-title">travis-kirby ~ interactive-resume</span>
-  <ul class="tbar-nav">
-    <li><a href="#about">./about</a></li>
-    <li><a href="#skills">./skills</a></li>
-    <li><a href="#certs">./certs</a></li>
-    <li><a href="#references">./refs</a></li>
-    <li><a href="#contact">./contact</a></li>
-  </ul>
-</div>
-<div class="wrap">
-  <div class="hero">
-    <div class="prompt">initializing profile — digital forensics &amp; eDiscovery<span class="cursor"></span></div>
-    <h1><div class="nf">TRAVIS M.</div><div class="nl" data-text="KIRBY">KIRBY</div></h1>
-    <div class="role">// Paralegal Candidate · eDiscovery · Digital Forensics</div>
-  </div>
-  <section id="about">
-    <div class="sh"><span class="sn">[ 01 ]</span><h2>About</h2><div class="sl"></div></div>
-    <div class="about-text">
-      <p>Paralegal candidate focused on eDiscovery and digital forensics. Currently pursuing the EC-Council CHFI certification path with hands-on lab work across forensic acquisition, network forensics, and incident response.</p>
-      <p>Bridging legal practice and technical investigation — two DISCO certifications in legal technology, real-world challenge work on CyberDefenders and Blue Team Labs Online, and a California Paralegal Certificate in progress.</p>
-    </div>
-    <div class="detail-grid">
-      <div class="d-item"><div class="d-label">// Focus</div><div class="d-value">eDiscovery &amp; Digital Forensics</div></div>
-      <div class="d-item"><div class="d-label">// Target Cert</div><div class="d-value">EC-Council CHFI</div></div>
-      <div class="d-item"><div class="d-label">// Tools</div><div class="d-value">FTK Imager, Autopsy, Wireshark</div></div>
-      <div class="d-item"><div class="d-label">// Legal Tech</div><div class="d-value">DISCO Certified (x2)</div></div>
-      <div class="d-item"><div class="d-label">// Legal</div><div class="d-value">CA Paralegal Cert (In Progress)</div></div>
-      <div class="d-item"><div class="d-label">// Status</div><div class="d-value">Seeking Entry-Level Roles</div></div>
-    </div>
-  </section>
-  <section id="skills">
-    <div class="sh"><span class="sn">[ 02 ]</span><h2>Skills</h2><div class="sl"></div></div>
-    <div class="skills-section">
-      <div class="skills-cat">// Forensics &amp; eDiscovery</div>
-      <div class="skill-row"><span class="skill-name">DISCO Platform</span><div class="skill-bar-wrap"><div class="skill-bar green" style="--target:85%"></div></div><span class="skill-level">Advanced</span></div>
-      <div class="skill-row"><span class="skill-name">FTK Imager</span><div class="skill-bar-wrap"><div class="skill-bar green" style="--target:60%"></div></div><span class="skill-level">Intermediate</span></div>
-      <div class="skill-row"><span class="skill-name">Autopsy</span><div class="skill-bar-wrap"><div class="skill-bar green" style="--target:55%"></div></div><span class="skill-level">Intermediate</span></div>
-      <div class="skill-row"><span class="skill-name">Wireshark</span><div class="skill-bar-wrap"><div class="skill-bar green" style="--target:50%"></div></div><span class="skill-level">Developing</span></div>
-      <div class="skill-row"><span class="skill-name">Document Review</span><div class="skill-bar-wrap"><div class="skill-bar green" style="--target:80%"></div></div><span class="skill-level">Advanced</span></div>
-    </div>
-    <div class="skills-section">
-      <div class="skills-cat">// Legal</div>
-      <div class="skill-row"><span class="skill-name">Civil Litigation</span><div class="skill-bar-wrap"><div class="skill-bar blue" style="--target:70%"></div></div><span class="skill-level">Proficient</span></div>
-      <div class="skill-row"><span class="skill-name">Legal Research</span><div class="skill-bar-wrap"><div class="skill-bar blue" style="--target:75%"></div></div><span class="skill-level">Proficient</span></div>
-      <div class="skill-row"><span class="skill-name">IRAC Writing</span><div class="skill-bar-wrap"><div class="skill-bar blue" style="--target:70%"></div></div><span class="skill-level">Proficient</span></div>
-      <div class="skill-row"><span class="skill-name">Copyright / IP</span><div class="skill-bar-wrap"><div class="skill-bar blue" style="--target:65%"></div></div><span class="skill-level">Proficient</span></div>
-    </div>
-    <div class="skills-section">
-      <div class="skills-cat">// Technical</div>
-      <div class="skill-row"><span class="skill-name">Network Forensics</span><div class="skill-bar-wrap"><div class="skill-bar orange" style="--target:45%"></div></div><span class="skill-level">Developing</span></div>
-      <div class="skill-row"><span class="skill-name">Incident Response</span><div class="skill-bar-wrap"><div class="skill-bar orange" style="--target:40%"></div></div><span class="skill-level">Developing</span></div>
-      <div class="skill-row"><span class="skill-name">Malware Analysis</span><div class="skill-bar-wrap"><div class="skill-bar orange" style="--target:35%"></div></div><span class="skill-level">Learning</span></div>
-    </div>
-  </section>
-  <section id="certs">
-    <div class="sh"><span class="sn">[ 03 ]</span><h2>Certifications</h2><div class="sl"></div></div>
-    <div class="certs-grid">
-      <div class="cg-label">// Earned</div>
-      <a class="cc" href="#" title="View certificate"><div class="cc-left"><div class="cc-icon">🎓</div><div><div class="cc-name">Cyber Forensics Intro</div><div class="cc-meta"><span class="cc-issuer">Great Learning</span><span class="cc-tier">T4</span></div></div></div><span class="cc-status st-e">Earned</span></a>
-      <a class="cc" href="#" title="View certificate"><div class="cc-left"><div class="cc-icon">⚖️</div><div><div class="cc-name">DISCO Data Management</div><div class="cc-meta"><span class="cc-issuer">DISCO University</span><span class="cc-tier">Legal Tech</span></div></div></div><span class="cc-status st-e">Earned</span></a>
-      <a class="cc" href="#" title="View certificate"><div class="cc-left"><div class="cc-icon">⚖️</div><div><div class="cc-name">DISCO Search &amp; Review</div><div class="cc-meta"><span class="cc-issuer">DISCO University</span><span class="cc-tier">Legal Tech</span></div></div></div><span class="cc-status st-e">Earned</span></a>
-      <div class="cg-label">// In Progress</div>
-      <div class="cc ip"><div class="cc-left"><div class="cc-icon">📜</div><div><div class="cc-name">California Paralegal Certificate</div><div class="cc-meta"><span class="cc-issuer">Cal State LA</span><span class="cc-tier">Legal</span></div></div></div><span class="cc-status st-ip">In Progress</span></div>
-      <div class="cg-label">// Planned</div>
-      <div class="cc"><div class="cc-left"><div class="cc-icon">🛡️</div><div><div class="cc-name">NSE 1 — Network Security Associate</div><div class="cc-meta"><span class="cc-issuer">Fortinet</span><span class="cc-tier">T2</span></div></div></div><span class="cc-status st-p">Planned</span></div>
-      <div class="cc"><div class="cc-left"><div class="cc-icon">🛡️</div><div><div class="cc-name">NSE 2 — Network Security Associate</div><div class="cc-meta"><span class="cc-issuer">Fortinet</span><span class="cc-tier">T2</span></div></div></div><span class="cc-status st-p">Planned</span></div>
-      <div class="cc"><div class="cc-left"><div class="cc-icon">🛡️</div><div><div class="cc-name">NSE 3 — Network Security Associate</div><div class="cc-meta"><span class="cc-issuer">Fortinet</span><span class="cc-tier">T2</span></div></div></div><span class="cc-status st-p">Planned</span></div>
-      <div class="cc"><div class="cc-left"><div class="cc-icon">🔍</div><div><div class="cc-name">ACI — AccessData Certified Investigator</div><div class="cc-meta"><span class="cc-issuer">Exterro / AccessData</span><span class="cc-tier">T3</span></div></div></div><span class="cc-status st-p">Planned</span></div>
-      <div class="cc"><div class="cc-left"><div class="cc-icon">📁</div><div><div class="cc-name">DFE — Digital Forensics Essentials</div><div class="cc-meta"><span class="cc-issuer">EC-Council</span><span class="cc-tier">T2</span></div></div></div><span class="cc-status st-p">Planned</span></div>
-      <div class="cc"><div class="cc-left"><div class="cc-icon">🔬</div><div><div class="cc-name">CHFI — Computer Hacking Forensic Investigator</div><div class="cc-meta"><span class="cc-issuer">EC-Council</span><span class="cc-tier">T1</span></div></div></div><span class="cc-status st-p">Planned</span></div>
-    </div>
-  </section>
-  <section id="references">
-    <div class="sh"><span class="sn">[ 04 ]</span><h2>References</h2><div class="sl"></div></div>
-    <div class="ref-grid">
-      <div class="ref-card"><div class="ref-name">Jane Doe, Esq.</div><div class="ref-title">Senior Litigation Partner</div><div class="ref-org">Placeholder &amp; Associates LLP</div><div class="ref-avail">Available upon request</div></div>
-      <div class="ref-card"><div class="ref-name">John Smith</div><div class="ref-title">Director of eDiscovery</div><div class="ref-org">Placeholder Legal Solutions</div><div class="ref-avail">Available upon request</div></div>
-      <div class="ref-card"><div class="ref-name">Dr. Sarah Chen</div><div class="ref-title">Professor, Legal Studies</div><div class="ref-org">California State University, Los Angeles</div><div class="ref-avail">Available upon request</div></div>
-      <div class="ref-card"><div class="ref-name">Michael Torres</div><div class="ref-title">Senior Digital Forensics Analyst</div><div class="ref-org">Placeholder Cybersecurity Inc.</div><div class="ref-avail">Available upon request</div></div>
-    </div>
-  </section>
-  <section id="contact">
-    <div class="sh"><span class="sn">[ 05 ]</span><h2>Contact</h2><div class="sl"></div></div>
-    <div class="contact-text">Currently seeking entry-level positions in eDiscovery, digital forensics, and litigation support. Open to connecting.</div>
-    <div class="contact-grid">
-      <a class="contact-row" href="mailto:placeholder@email.com"><span class="cr-label">Email</span><span class="cr-value">placeholder@email.com</span><span class="cr-arrow">→</span></a>
-      <a class="contact-row" href="https://linkedin.com/in/placeholder" target="_blank" rel="noopener noreferrer"><span class="cr-label">LinkedIn</span><span class="cr-value">linkedin.com/in/placeholder</span><span class="cr-arrow">→</span></a>
-      <a class="contact-row" href="https://github.com/nonmammalcamel" target="_blank" rel="noopener noreferrer"><span class="cr-label">GitHub</span><span class="cr-value">github.com/nonmammalcamel</span><span class="cr-arrow">→</span></a>
-    </div>
-  </section>
-  <div class="terminal-input-wrap">
-    <div class="ti-label">// interactive terminal — type "help" to see available commands</div>
-    <div class="ti-row">
-      <span class="ti-prompt">visitor@kirby:~$</span>
-      <input class="ti-input" id="term-input" type="text" placeholder="type a command..." autocomplete="off" spellcheck="false"/>
-    </div>
-    <div class="ti-output" id="term-output"></div>
-  </div>
-</div>
-<footer><div class="fc">&copy; 2026 <span>Travis M. Kirby</span> — All rights reserved.</div></footer>
-</body>
-</html>`;
-
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: `
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --bg:#080b0f;--bg2:#0d1117;--ink:#e2e8f0;--muted:#64748b;
-  --border:#1a2332;--accent:#00ff88;--accent2:#00c4ff;
+  --bg:#080b0f;--bg2:#0d1117;--ink:#e2e8f0;--muted:#94a3b8;
+  --border:#1e2d3d;--accent:#00ff88;--accent2:#00c4ff;
   --accent-glow:rgba(0,255,136,0.15);--red:#ff4466;--orange:#ffaa00;
   --mono:'Share Tech Mono',monospace;--body:'Space Mono',monospace;
   --heading:'Outfit',sans-serif;
 }
 html{scroll-behavior:smooth}
-body{background:var(--bg)!important;color:var(--ink);font-family:var(--body);font-size:.82rem;line-height:1.8;overflow-x:hidden;min-height:100vh}
+body{background:var(--bg)!important;color:var(--ink);font-family:var(--body);font-size:.92rem;line-height:1.8;overflow-x:hidden;min-height:100vh}
 .scanlines{position:fixed;inset:0;z-index:999;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.08) 2px,rgba(0,0,0,.08) 4px)}
 .grid-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(0,255,136,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,136,.03) 1px,transparent 1px);background-size:40px 40px}
+.floating-cursor{position:fixed;right:2.5rem;top:50%;transform:translateY(-50%);width:10px;height:22px;background:var(--accent);z-index:998;pointer-events:none;animation:blink 1s step-end infinite;box-shadow:0 0 12px var(--accent-glow),0 0 4px var(--accent)}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 .wrap{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:0 2rem}
 .tbar{background:var(--bg2);border-bottom:1px solid var(--border);padding:.6rem 2rem;display:flex;align-items:center;gap:.5rem;position:sticky;top:0;z-index:100}
 .dot{width:10px;height:10px;border-radius:50%}.dr{background:#ff5f56}.dy{background:#ffbd2e}.dg{background:#27c93f}
-.tbar-title{font-family:var(--mono);font-size:.7rem;color:var(--muted);margin-left:.75rem;letter-spacing:.06em}
+.tbar-title{font-family:var(--mono);font-size:.76rem;color:var(--muted);margin-left:.75rem;letter-spacing:.06em}
 .tbar-nav{margin-left:auto;display:flex;gap:1.5rem;list-style:none}
-.tbar-nav a{font-family:var(--mono);font-size:.68rem;color:var(--muted);text-decoration:none;letter-spacing:.08em;transition:color .2s}
+.tbar-nav a{font-family:var(--mono);font-size:.74rem;color:var(--muted);text-decoration:none;letter-spacing:.08em;transition:color .2s}
 .tbar-nav a:hover{color:var(--accent)}
 .hero{padding:4rem 0 2rem}
-.prompt{font-family:var(--mono);font-size:.72rem;color:var(--accent);margin-bottom:1.5rem}
+.prompt{font-family:var(--mono);font-size:.8rem;color:var(--accent);margin-bottom:1.5rem}
 .prompt::before{content:'> ';color:var(--muted)}
 .cursor{display:inline-block;width:8px;height:1em;background:var(--accent);animation:blink 1s step-end infinite;vertical-align:text-bottom;margin-left:2px}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 h1{font-family:var(--heading);font-size:clamp(3.2rem,9vw,6rem);font-weight:800;line-height:.95;letter-spacing:-.02em;margin-bottom:.25rem}
 .nf{color:var(--ink)}
 .nl{color:transparent;-webkit-text-stroke:1px var(--accent);text-shadow:0 0 40px var(--accent-glow);position:relative}
@@ -151,84 +36,85 @@ h1{font-family:var(--heading);font-size:clamp(3.2rem,9vw,6rem);font-weight:800;l
 .nl::after{color:var(--red);clip-path:polygon(0 60%,100% 60%,100% 80%,0 80%);animation:g2 4s infinite linear;opacity:.6}
 @keyframes g1{0%,90%,100%{transform:translateX(0);opacity:0}92%{transform:translateX(-4px);opacity:.6}94%{transform:translateX(2px);opacity:.4}96%{transform:translateX(0);opacity:0}}
 @keyframes g2{0%,90%,100%{transform:translateX(0);opacity:0}93%{transform:translateX(4px);opacity:.6}95%{transform:translateX(-2px);opacity:.3}97%{transform:translateX(0);opacity:0}}
-.role{font-family:var(--mono);font-size:.75rem;color:var(--accent2);letter-spacing:.2em;text-transform:uppercase;margin:1.5rem 0 .5rem}
+.role{font-family:var(--mono);font-size:.82rem;color:var(--accent2);letter-spacing:.2em;text-transform:uppercase;margin:1.5rem 0 .5rem}
 section{padding:4rem 0;border-top:1px solid var(--border)}
 .sh{display:flex;align-items:center;gap:1rem;margin-bottom:2.5rem}
-.sn{font-family:var(--mono);font-size:.65rem;color:var(--accent);letter-spacing:.1em}
-h2{font-family:var(--heading);font-size:1.6rem;font-weight:700;letter-spacing:-.02em;color:var(--ink)}
+.sn{font-family:var(--mono);font-size:.72rem;color:var(--accent);letter-spacing:.1em}
+h2{font-family:var(--heading);font-size:1.7rem;font-weight:700;letter-spacing:-.02em;color:var(--ink)}
 .sl{flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)}
-.about-text{color:var(--muted);font-size:.8rem;line-height:1.9;max-width:560px}
+.about-text{color:var(--muted);font-size:.9rem;line-height:1.9;max-width:580px}
 .about-text p+p{margin-top:.75rem}
 .detail-grid{margin-top:2rem;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border)}
 .d-item{padding:1.1rem 1.25rem;background:var(--bg2)}
-.d-label{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:.35rem}
-.d-value{font-family:var(--mono);font-size:.78rem;color:var(--ink)}
+.d-label{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:.35rem}
+.d-value{font-family:var(--mono);font-size:.84rem;color:var(--ink)}
 .skills-section+.skills-section{margin-top:2rem}
-.skills-cat{font-family:var(--mono);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
+.skills-cat{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
 .skill-row{display:flex;align-items:center;gap:1rem;padding:.6rem 0;border-bottom:1px solid var(--border)}
 .skill-row:last-child{border-bottom:none}
-.skill-name{font-family:var(--mono);font-size:.76rem;color:var(--ink);width:200px;flex-shrink:0}
+.skill-name{font-family:var(--mono);font-size:.84rem;color:var(--ink);width:200px;flex-shrink:0}
 .skill-bar-wrap{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden}
 .skill-bar{height:100%;border-radius:3px;width:0%;transition:width 1.2s cubic-bezier(.22,1,.36,1)}
 .skill-bar.green{background:var(--accent);box-shadow:0 0 8px var(--accent-glow)}
 .skill-bar.blue{background:var(--accent2);box-shadow:0 0 8px rgba(0,196,255,.2)}
 .skill-bar.orange{background:var(--orange);box-shadow:0 0 8px rgba(255,170,0,.2)}
 .skill-bar.animated{width:var(--target)}
-.skill-level{font-family:var(--mono);font-size:.6rem;color:var(--muted);width:70px;text-align:right;flex-shrink:0}
+.skill-level{font-family:var(--mono);font-size:.68rem;color:var(--muted);width:80px;text-align:right;flex-shrink:0}
 .certs-grid{display:grid;gap:2px}
-.cg-label{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:.6rem 0 .4rem;border-top:1px solid var(--border);margin-top:.75rem}
+.cg-label{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:.6rem 0 .4rem;border-top:1px solid var(--border);margin-top:.75rem}
 .cg-label:first-child{border-top:none;margin-top:0}
 .cc{background:var(--bg2);border:1px solid var(--border);padding:1.1rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;transition:border-color .2s,background .2s;position:relative;overflow:hidden;text-decoration:none;color:inherit;cursor:default}
 a.cc{cursor:pointer}
 a.cc:hover .cc-name::after{opacity:1}
-a.cc .cc-name::after{content:' ↗';font-size:.65rem;color:var(--accent);opacity:0;transition:opacity .2s}
+a.cc .cc-name::after{content:' ↗';font-size:.72rem;color:var(--accent);opacity:0;transition:opacity .2s}
 .cc::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--border);transition:background .2s}
 .cc:hover{border-color:#1e3a2a;background:#0a0f0b}
 .cc:hover::before{background:var(--accent)}
 .cc.ip{border-color:#2a1e00}
 .cc.ip:hover::before{background:var(--orange)}
 .cc-left{display:flex;align-items:center;gap:1rem}
-.cc-icon{font-size:1rem;width:32px;text-align:center;flex-shrink:0}
-.cc-name{font-family:var(--mono);font-size:.78rem;color:var(--ink);margin-bottom:.15rem}
+.cc-icon{font-size:1.1rem;width:32px;text-align:center;flex-shrink:0}
+.cc-name{font-family:var(--mono);font-size:.84rem;color:var(--ink);margin-bottom:.15rem}
 .cc-meta{display:flex;align-items:center;gap:.75rem}
-.cc-issuer{font-family:var(--mono);font-size:.62rem;color:var(--muted);letter-spacing:.06em}
-.cc-tier{font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;color:var(--muted);border:1px solid var(--border);padding:.1rem .4rem}
-.cc-status{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .6rem;border:1px solid;flex-shrink:0}
+.cc-issuer{font-family:var(--mono);font-size:.68rem;color:var(--muted);letter-spacing:.06em}
+.cc-tier{font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;color:var(--muted);border:1px solid var(--border);padding:.1rem .4rem}
+.cc-status{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .6rem;border:1px solid;flex-shrink:0}
 .st-e{color:var(--accent);border-color:var(--accent);text-shadow:0 0 8px var(--accent-glow)}
 .st-ip{color:var(--orange);border-color:var(--orange)}
 .st-p{color:var(--muted);border-color:var(--border)}
 .ref-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border)}
 .ref-card{padding:1.25rem;background:var(--bg2)}
-.ref-name{font-family:var(--mono);font-size:.8rem;color:var(--ink);margin-bottom:.25rem}
-.ref-title{font-family:var(--mono);font-size:.65rem;color:var(--accent2);letter-spacing:.04em;margin-bottom:.15rem}
-.ref-org{font-family:var(--mono);font-size:.62rem;color:var(--muted);letter-spacing:.06em}
-.ref-avail{font-family:var(--mono);font-size:.58rem;color:var(--muted);margin-top:.6rem;font-style:italic;letter-spacing:.04em}
-.contact-text{color:var(--muted);font-size:.8rem;max-width:460px;line-height:1.85;margin-bottom:2rem}
+.ref-name{font-family:var(--mono);font-size:.88rem;color:var(--ink);margin-bottom:.25rem}
+.ref-title{font-family:var(--mono);font-size:.72rem;color:var(--accent2);letter-spacing:.04em;margin-bottom:.15rem}
+.ref-org{font-family:var(--mono);font-size:.68rem;color:var(--muted);letter-spacing:.06em}
+.ref-avail{font-family:var(--mono);font-size:.64rem;color:var(--muted);margin-top:.6rem;font-style:italic;letter-spacing:.04em}
+.contact-text{color:var(--muted);font-size:.9rem;max-width:460px;line-height:1.85;margin-bottom:2rem}
 .contact-grid{display:grid;gap:2px}
 .contact-row{display:flex;align-items:center;gap:1rem;background:var(--bg2);border:1px solid var(--border);padding:1rem 1.25rem;transition:border-color .2s,background .2s;text-decoration:none;color:inherit}
 .contact-row:hover{border-color:var(--accent);background:#0a0f0b}
 .contact-row:hover .cr-label{color:var(--accent)}
-.cr-label{font-family:var(--mono);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);width:80px;flex-shrink:0;transition:color .2s}
-.cr-value{font-family:var(--mono);font-size:.78rem;color:var(--ink)}
-.cr-arrow{margin-left:auto;font-family:var(--mono);font-size:.7rem;color:var(--accent);opacity:0;transition:opacity .2s}
+.cr-label{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);width:80px;flex-shrink:0;transition:color .2s}
+.cr-value{font-family:var(--mono);font-size:.84rem;color:var(--ink)}
+.cr-arrow{margin-left:auto;font-family:var(--mono);font-size:.76rem;color:var(--accent);opacity:0;transition:opacity .2s}
 .contact-row:hover .cr-arrow{opacity:1}
 .terminal-input-wrap{padding:2rem 0;border-top:1px solid var(--border)}
-.ti-label{font-family:var(--mono);font-size:.65rem;color:var(--muted);margin-bottom:.75rem;letter-spacing:.06em}
+.ti-label{font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-bottom:.75rem;letter-spacing:.06em}
 .ti-row{display:flex;align-items:center;gap:.5rem}
-.ti-prompt{font-family:var(--mono);font-size:.82rem;color:var(--accent)}
-.ti-input{flex:1;background:none;border:none;outline:none;font-family:var(--mono);font-size:.82rem;color:var(--ink);caret-color:var(--accent)}
+.ti-prompt{font-family:var(--mono);font-size:.9rem;color:var(--accent)}
+.ti-input{flex:1;background:none;border:none;outline:none;font-family:var(--mono);font-size:.9rem;color:var(--ink);caret-color:var(--accent)}
 .ti-input::placeholder{color:var(--border)}
-.ti-output{margin-top:1rem;font-family:var(--mono);font-size:.76rem;color:var(--muted);line-height:1.8;white-space:pre-wrap;max-height:300px;overflow-y:auto}
+.ti-output{margin-top:1rem;font-family:var(--mono);font-size:.82rem;color:var(--muted);line-height:1.8;white-space:pre-wrap;max-height:300px;overflow-y:auto}
 .ti-output .cmd{color:var(--accent)}
 .ti-output .err{color:var(--red)}
 footer{border-top:1px solid var(--border);padding:2rem 0 3rem;text-align:center}
-.fc{font-family:var(--mono);font-size:.65rem;color:var(--muted)}
+.fc{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
 .fc span{color:var(--accent)}
-@media(max-width:540px){.detail-grid,.ref-grid{grid-template-columns:1fr}h1{font-size:3rem}.cc{flex-direction:column;align-items:flex-start}.tbar-nav{display:none}.skill-name{width:120px}}
+@media(max-width:540px){.detail-grid,.ref-grid{grid-template-columns:1fr}h1{font-size:3rem}.cc{flex-direction:column;align-items:flex-start}.tbar-nav{display:none}.skill-name{width:120px}.floating-cursor{display:none}}
       `}} />
       <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet"/>
       <div className="scanlines" />
       <div className="grid-bg" />
+      <div className="floating-cursor" />
       <div className="tbar">
         <div className="dot dr" /><div className="dot dy" /><div className="dot dg" />
         <span className="tbar-title">travis-kirby ~ interactive-resume</span>
