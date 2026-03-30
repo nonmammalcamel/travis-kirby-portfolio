@@ -334,16 +334,14 @@ footer{border-top:1px solid var(--border);padding:2rem 0 3rem;text-align:center}
         }
 
         function getSnapTargets() {
-          var selectors = 'h1, h2, .sh, .d-item, .skills-cat, .skill-row:nth-child(odd), .cc:nth-child(odd), .cg-label, .ref-card, .contact-row, .role, .ti-row, .fc';
+          var selectors = '.d-item, .skill-row, .cc, .ref-card, .contact-row';
           var els = document.querySelectorAll(selectors);
           var targets = [];
-          var minGap = 45;
           els.forEach(function(el) {
             var rect = el.getBoundingClientRect();
             var absTop = rect.top + window.scrollY;
-            if (targets.length === 0 || absTop - targets[targets.length - 1] >= minGap) {
-              targets.push(absTop);
-            }
+            var absMid = absTop + rect.height / 2 - 11;
+            targets.push(absMid);
           });
           targets.sort(function(a, b) { return a - b; });
           return targets;
