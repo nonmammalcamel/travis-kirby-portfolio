@@ -330,14 +330,14 @@ footer{border-top:1px solid var(--border);padding:2rem 0 3rem;text-align:center}
 
         function getCursorLeft() {
           var rect = wrapEl.getBoundingClientRect();
-          return rect.left - 14;
+          return rect.right + 14;
         }
 
         function getSnapTargets() {
           var selectors = 'h1, h2, .sh, .d-item, .skills-cat, .skill-row:nth-child(odd), .cc:nth-child(odd), .cg-label, .ref-card, .contact-row, .role, .ti-row, .fc';
           var els = document.querySelectorAll(selectors);
           var targets = [];
-          var minGap = 60;
+          var minGap = 45;
           els.forEach(function(el) {
             var rect = el.getBoundingClientRect();
             var absTop = rect.top + window.scrollY;
