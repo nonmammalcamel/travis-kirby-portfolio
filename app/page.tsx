@@ -322,60 +322,39 @@ footer{border-top:1px solid var(--border);padding:2rem 0 3rem;text-align:center}
 
         document.querySelector('.terminal-input-wrap').addEventListener('click', function() { termInput.focus(); });
 
-        // Floating cursor — line-hopping, appears after scroll
+        // Floating cursor — sits at 1/3 screen height, snaps vertically
+        // to whichever text box is crossing that line
         var fc = document.querySelector('.floating-cursor');
-        var hasScrolled = false;
         var wrapEl = document.querySelector('.wrap');
-        var currentSnapY = -1;
-
-        function getCursorLeft() {
-          var rect = wrapEl.getBoundingClientRect();
-          return rect.right + 7;
-        }
-
-        function getSnapTargets() {
-          var selectors = '.d-item, .skill-row, .cc, .ref-card, .contact-row';
-          var els = document.querySelectorAll(selectors);
-          var targets = [];
-          els.forEach(function(el) {
-            var rect = el.getBoundingClientRect();
-            var absTop = rect.top + window.scrollY;
-            var absMid = absTop + rect.height / 2 - 11;
-            targets.push(absMid);
-          });
-          targets.sort(function(a, b) { return a - b; });
-          return targets;
-        }
-
-        var snapTargets = getSnapTargets();
-        var resizeTimer;
-        window.addEventListener('resize', function() {
-          clearTimeout(resizeTimer);
-          resizeTimer = setTimeout(function() { snapTargets = getSnapTargets(); }, 200);
-        });
+        var lastBox = null;
 
         window.addEventListener('scroll', function() {
           var scrollY = window.scrollY;
-          if (scrollY > 80) {
-            if (!hasScrolled) { hasScrolled = true; fc.style.opacity = '1'; }
-            fc.style.left = getCursorLeft() + 'px';
-            var viewTarget = scrollY + window.innerHeight / 3;
-            var closest = snapTargets[0];
-            var closestDist = Math.abs(viewTarget - closest);
-            for (var i = 1; i < snapTargets.length; i++) {
-              var dist = Math.abs(viewTarget - snapTargets[i]);
-              if (dist < closestDist) {
-                closest = snapTargets[i];
-                closestDist = dist;
+          if (scrollY < 80) { fc.style.opacity = '0'; return; }
+
+          fc.style.opacity = '1';
+          var scanLine = window.innerHeight / 3;
+          var boxes = document.querySelectorAll('.d-item, .skill-row, .cc, .ref-card, .contact-row');
+          var snapped = false;
+
+          for (var i = 0; i < boxes.length; i++) {
+            var rect = boxes[i].getBoundingClientRect();
+            if (rect.top <= scanLine && rect.bottom >= scanLine) {
+              if (boxes[i] !== lastBox) {
+                lastBox = boxes[i];
+                var mid = rect.top + rect.height / 2;
+                fc.style.top = mid - 11 + 'px';
+                var wrapRect = wrapEl.getBoundingClientRect();
+                fc.style.left = wrapRect.right + 7 + 'px';
               }
+              snapped = true;
+              break;
             }
-            if (closest !== currentSnapY) {
-              currentSnapY = closest;
-              fc.style.top = (closest - scrollY) + 'px';
-            }
-          } else {
-            hasScrolled = false;
+          }
+
+          if (!snapped) {
             fc.style.opacity = '0';
+            lastBox = null;
           }
         });
       `}} />
