@@ -24,7 +24,7 @@ body{background:var(--bg)!important;color:var(--ink);font-family:var(--body);fon
 .loader-lines span.visible{opacity:1}
 .scanlines{position:fixed;inset:0;z-index:999;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.08) 2px,rgba(0,0,0,.08) 4px)}
 .grid-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(0,255,136,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,136,.03) 1px,transparent 1px);background-size:40px 40px}
-.floating-cursor{position:fixed;left:1.5rem;top:0;width:10px;height:22px;background:var(--accent);z-index:998;pointer-events:none;animation:blink 1s step-end infinite;box-shadow:0 0 12px var(--accent-glow),0 0 4px var(--accent);opacity:0;transition:opacity .3s}
+.floating-cursor{position:fixed;left:0;top:0;width:10px;height:22px;background:var(--accent);z-index:998;pointer-events:none;animation:blink 1s step-end infinite;box-shadow:0 0 12px var(--accent-glow),0 0 4px var(--accent);opacity:0;transition:opacity .3s}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 .wrap{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:0 2rem}
 .tbar{background:var(--bg2);border-bottom:1px solid var(--border);padding:.6rem 2rem;display:flex;align-items:center;gap:.5rem;position:sticky;top:0;z-index:100}
@@ -328,11 +328,18 @@ footer{border-top:1px solid var(--border);padding:2rem 0 3rem;text-align:center}
         var currentLine = -1;
         var hasScrolled = false;
         var targetY = Math.floor(window.innerHeight / 3);
+        var wrapEl = document.querySelector('.wrap');
+
+        function getCursorLeft() {
+          var rect = wrapEl.getBoundingClientRect();
+          return rect.left - 14;
+        }
 
         window.addEventListener('scroll', function() {
           var scrollY = window.scrollY;
           if (scrollY > 80) {
             if (!hasScrolled) { hasScrolled = true; fc.style.opacity = '1'; }
+            fc.style.left = getCursorLeft() + 'px';
             var absoluteY = scrollY + targetY;
             var targetLine = Math.floor(absoluteY / lineHeight);
             if (targetLine !== currentLine) {
