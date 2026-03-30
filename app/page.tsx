@@ -1,4 +1,4 @@
-/* eslint-disable react/no-danger */
+\/* eslint-disable react/no-danger */
 export default function Home() {
   return (
     <>
@@ -324,27 +324,53 @@ footer{border-top:1px solid var(--border);padding:2rem 0 3rem;text-align:center}
 
         // Floating cursor — line-hopping, appears after scroll
         var fc = document.querySelector('.floating-cursor');
-        var lineHeight = 30;
-        var currentLine = -1;
         var hasScrolled = false;
-        var targetY = Math.floor(window.innerHeight / 3);
         var wrapEl = document.querySelector('.wrap');
+        var currentSnapY = -1;
 
         function getCursorLeft() {
           var rect = wrapEl.getBoundingClientRect();
           return rect.left - 14;
         }
 
+        function getSnapTargets() {
+          var selectors = 'h1, h2, p, .d-item, .skill-row, .cc, .cg-label, .ref-card, .contact-row, .role, .ti-row, .ti-label, .fc';
+          var els = document.querySelectorAll(selectors);
+          var targets = [];
+          els.forEach(function(el) {
+            var rect = el.getBoundingClientRect();
+            var absTop = rect.top + window.scrollY;
+            targets.push(absTop);
+          });
+          targets.sort(function(a, b) { return a - b; });
+          return targets;
+        }
+
+        var snapTargets = getSnapTargets();
+        var resizeTimer;
+        window.addEventListener('resize', function() {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(function() { snapTargets = getSnapTargets(); }, 200);
+        });
+
         window.addEventListener('scroll', function() {
           var scrollY = window.scrollY;
           if (scrollY > 80) {
             if (!hasScrolled) { hasScrolled = true; fc.style.opacity = '1'; }
             fc.style.left = getCursorLeft() + 'px';
-            var absoluteY = scrollY + targetY;
-            var targetLine = Math.floor(absoluteY / lineHeight);
-            if (targetLine !== currentLine) {
-              currentLine = targetLine;
-              fc.style.top = (targetLine * lineHeight - scrollY) + 'px';
+            var viewTarget = scrollY + window.innerHeight / 3;
+            var closest = snapTargets[0];
+            var closestDist = Math.abs(viewTarget - closest);
+            for (var i = 1; i < snapTargets.length; i++) {
+              var dist = Math.abs(viewTarget - snapTargets[i]);
+              if (dist < closestDist) {
+                closest = snapTargets[i];
+                closestDist = dist;
+              }
+            }
+            if (closest !== currentSnapY) {
+              currentSnapY = closest;
+              fc.style.top = (closest - scrollY) + 'px';
             }
           } else {
             hasScrolled = false;
