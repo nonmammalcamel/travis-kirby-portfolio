@@ -158,8 +158,9 @@ footer{border-top:1px solid var(--border);padding:2rem 0 3rem;text-align:center}
         <section id="about">
           <div className="sh"><span className="sn">[ 01 ]</span><h2>About</h2><div className="sl" /></div>
           <div className="about-text">
-            <p>Paralegal candidate focused on eDiscovery and digital forensics. Currently pursuing the EC-Council CHFI certification path with hands-on lab work across forensic acquisition, network forensics, and incident response.</p>
-            <p>Bridging legal practice and technical investigation — two DISCO certifications in legal technology, real-world challenge work on CyberDefenders and Blue Team Labs Online, and a California Paralegal Certificate in progress.</p>
+            <p className="snap-line">Paralegal candidate focused on eDiscovery and digital forensics.</p>
+            <p className="snap-line">Currently pursuing the EC-Council CHFI certification path with hands-on lab work across forensic acquisition, network forensics, and incident response.</p>
+            <p className="snap-line">Bridging legal practice and technical investigation — two DISCO certifications in legal technology, real-world challenge work on CyberDefenders and Blue Team Labs Online, and a California Paralegal Certificate in progress.</p>
           </div>
           <div className="detail-grid">
             <div className="d-item"><div className="d-label">// Focus</div><div className="d-value">eDiscovery &amp; Digital Forensics</div></div>
@@ -334,7 +335,7 @@ footer{border-top:1px solid var(--border);padding:2rem 0 3rem;text-align:center}
 
           fc.style.opacity = '1';
           var scanLine = window.innerHeight / 3;
-          var boxes = document.querySelectorAll('.d-item, .skill-row, .cc, .ref-card, .contact-row');
+          var boxes = document.querySelectorAll('.snap-line, .d-item, .skill-row, .cc, .cg-label, .ref-card, .contact-row, .sh, .role, .ti-row');
           var snapped = false;
 
           for (var i = 0; i < boxes.length; i++) {
