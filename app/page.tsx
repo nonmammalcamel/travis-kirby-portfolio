@@ -13,6 +13,15 @@ export default function Home() {
 }
 html{scroll-behavior:smooth}
 body{background:var(--bg)!important;color:var(--ink);font-family:var(--body);font-size:.92rem;line-height:1.8;overflow-x:hidden;min-height:100vh}
+/* loader */
+.loader-screen{position:fixed;inset:0;z-index:10000;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s}
+.loader-screen.hidden{opacity:0;visibility:hidden}
+.loader-text{font-family:var(--mono);font-size:.82rem;color:var(--accent);letter-spacing:.08em;margin-bottom:1.5rem}
+.loader-bar-wrap{width:280px;height:3px;background:var(--border);border-radius:2px;overflow:hidden}
+.loader-bar{height:100%;width:0%;background:var(--accent);box-shadow:0 0 10px var(--accent-glow);border-radius:2px;transition:width .15s linear}
+.loader-lines{margin-top:1.5rem;font-family:var(--mono);font-size:.65rem;color:var(--muted);text-align:left;width:280px;line-height:1.9}
+.loader-lines span{display:block;opacity:0;transition:opacity .2s}
+.loader-lines span.visible{opacity:1}
 .scanlines{position:fixed;inset:0;z-index:999;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.08) 2px,rgba(0,0,0,.08) 4px)}
 .grid-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(0,255,136,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,136,.03) 1px,transparent 1px);background-size:40px 40px}
 .floating-cursor{position:fixed;right:2.5rem;top:0;width:10px;height:22px;background:var(--accent);z-index:998;pointer-events:none;animation:blink 1s step-end infinite;box-shadow:0 0 12px var(--accent-glow),0 0 4px var(--accent);opacity:0;transition:opacity .3s}
@@ -112,6 +121,20 @@ footer{border-top:1px solid var(--border);padding:2rem 0 3rem;text-align:center}
 @media(max-width:540px){.detail-grid,.ref-grid{grid-template-columns:1fr}h1{font-size:3rem}.cc{flex-direction:column;align-items:flex-start}.tbar-nav{display:none}.skill-name{width:120px}.floating-cursor{display:none}}
       `}} />
       <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet"/>
+      <div className="loader-screen" id="loader">
+        <div className="loader-text">&gt; loading profile...</div>
+        <div className="loader-bar-wrap"><div className="loader-bar" id="loader-bar" /></div>
+        <div className="loader-lines" id="loader-lines">
+          <span>initializing system...</span>
+          <span>loading fonts...</span>
+          <span>mounting forensics toolkit...</span>
+          <span>decrypting credentials...</span>
+          <span>establishing secure connection...</span>
+          <span>rendering interface...</span>
+          <span>initializing profile — digital forensics &amp; eDiscovery</span>
+          <span>done.</span>
+        </div>
+      </div>
       <div className="scanlines" />
       <div className="grid-bg" />
       <div className="floating-cursor" />
@@ -128,7 +151,6 @@ footer{border-top:1px solid var(--border);padding:2rem 0 3rem;text-align:center}
       </div>
       <div className="wrap">
         <div className="hero">
-          <div className="prompt">initializing profile — digital forensics &amp; eDiscovery<span className="cursor" /></div>
           <h1><div className="nf">TRAVIS M.</div><div className="nl" data-text="KIRBY">KIRBY</div></h1>
           <div className="role">// Paralegal Candidate · eDiscovery · Digital Forensics</div>
         </div>
@@ -276,6 +298,27 @@ footer{border-top:1px solid var(--border);padding:2rem 0 3rem;text-align:center}
             termOutput.scrollTop = termOutput.scrollHeight;
           }
         });
+
+        // Loader
+        var loaderLines = document.querySelectorAll('#loader-lines span');
+        var loaderBar = document.getElementById('loader-bar');
+        var loader = document.getElementById('loader');
+        var totalSteps = loaderLines.length;
+        var step = 0;
+
+        function advanceLoader() {
+          if (step < totalSteps) {
+            loaderLines[step].classList.add('visible');
+            loaderBar.style.width = ((step + 1) / totalSteps * 100) + '%';
+            step++;
+            var delay = step === totalSteps ? 400 : 200 + Math.random() * 300;
+            setTimeout(advanceLoader, delay);
+          } else {
+            setTimeout(function() { loader.classList.add('hidden'); }, 500);
+          }
+        }
+
+        advanceLoader();
 
         document.querySelector('.terminal-input-wrap').addEventListener('click', function() { termInput.focus(); });
 
