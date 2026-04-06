@@ -1,3 +1,4 @@
+"use client";
 /* eslint-disable react/no-danger */
 export default function Home() {
   return (
