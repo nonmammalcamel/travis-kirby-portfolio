@@ -41,7 +41,6 @@ body{background:var(--bg)!important;color:var(--ink);font-family:var(--body);fon
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 .wrap{position:relative;z-index:1;max-width:1060px;margin:0 auto;padding:0 2.5rem}
 .tbar{background:var(--bg2);border-bottom:1px solid var(--border);padding:.6rem 2rem;display:flex;align-items:center;gap:.5rem;position:sticky;top:0;z-index:100}
-.dot{width:10px;height:10px;border-radius:50%}.dr{background:#ff5f56}.dy{background:#ffbd2e}.dg{background:#27c93f}
 .tbar-title{font-family:var(--mono);font-size:.84rem;color:var(--muted);margin-left:.75rem;letter-spacing:.06em}
 .tbar-nav{margin-left:auto;display:flex;gap:1.5rem;list-style:none}
 .tbar-nav a{font-family:var(--mono);font-size:.81rem;color:var(--muted);text-decoration:none;letter-spacing:.08em;transition:color .2s}
@@ -63,22 +62,25 @@ h2{font-family:var(--heading);font-size:2rem;font-weight:700;letter-spacing:-.02
 .sl{flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)}
 .about-text{color:var(--muted);font-size:1.02rem;line-height:1.95;max-width:100%}
 .about-text p+p{margin-top:1rem}
-.about-text .greeting{color:var(--ink);font-size:1.1rem}
 .about-text .accent-text{color:var(--accent)}
+.about-text a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(0,255,136,.3);transition:border-color .2s}
+.about-text a:hover{border-color:var(--accent)}
 .detail-grid{margin-top:2.5rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border)}
 .d-item{padding:1.1rem 1.25rem;background:var(--bg2)}
 .d-label{font-family:var(--mono);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:.35rem}
 .d-value{font-family:var(--mono);font-size:.92rem;color:var(--ink)}
-.skills-section+.skills-section{margin-top:2rem}
+/* skills side by side */
+.skills-columns{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+.skills-section+.skills-section{margin-top:0}
 .skills-cat{font-family:var(--mono);font-size:.88rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
 .skill-row{display:flex;align-items:center;gap:1rem;padding:.7rem 0;border-bottom:1px solid var(--border)}
 .skill-row:last-child{border-bottom:none}
-.skill-name{font-family:var(--mono);font-size:1.01rem;color:var(--ink);width:240px;flex-shrink:0}
-.skill-bar-wrap{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+.skill-name{font-family:var(--mono);font-size:1.01rem;color:var(--ink);width:auto;flex:1;flex-shrink:0}
+.skill-bar-wrap{width:120px;height:5px;background:rgba(30,45,61,.5);border-radius:3px;overflow:hidden;flex-shrink:0}
 .skill-bar{height:100%;border-radius:3px;width:0%;transition:width 1.2s cubic-bezier(.22,1,.36,1)}
-.skill-bar.green{background:var(--accent);box-shadow:0 0 8px var(--accent-glow)}
-.skill-bar.blue{background:var(--accent2);box-shadow:0 0 8px rgba(0,196,255,.2)}
-.skill-bar.orange{background:var(--orange);box-shadow:0 0 8px rgba(255,170,0,.2)}
+.skill-bar.green{background:rgba(0,255,136,.45);box-shadow:none}
+.skill-bar.blue{background:rgba(0,196,255,.45);box-shadow:none}
+.skill-bar.orange{background:rgba(255,170,0,.45);box-shadow:none}
 .skill-bar.animated{width:var(--target)}
 .skill-level{font-family:var(--mono);font-size:.84rem;color:var(--muted);width:100px;text-align:right;flex-shrink:0}
 .certs-grid{display:grid;gap:2px}
@@ -130,8 +132,8 @@ a.cc .cc-name::after{content:' ↗';font-size:.79rem;color:var(--accent);opacity
 footer{border-top:1px solid var(--border);padding:2rem 0 3rem;text-align:center}
 .fc{font-family:var(--mono);font-size:.79rem;color:var(--muted)}
 .fc span{color:var(--accent)}
-@media(max-width:768px){.detail-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:540px){.detail-grid,.ref-grid{grid-template-columns:1fr}h1{font-size:3.5rem}.cc{flex-direction:column;align-items:flex-start}.tbar-nav{display:none}.skill-name{width:140px}.floating-cursor{display:none}}
+@media(max-width:768px){.detail-grid{grid-template-columns:1fr 1fr}.skills-columns{grid-template-columns:1fr}}
+@media(max-width:540px){.detail-grid,.ref-grid{grid-template-columns:1fr}h1{font-size:3.5rem}.cc{flex-direction:column;align-items:flex-start}.tbar-nav{display:none}.floating-cursor{display:none}}
       `}} />
       <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet"/>
       <div className="loader-screen" id="loader">
@@ -155,7 +157,6 @@ footer{border-top:1px solid var(--border);padding:2rem 0 3rem;text-align:center}
       <div className="modal-overlay" id="cert-modal">
         <div className="modal-box">
           <div className="modal-bar">
-            <div className="dot dr" /><div className="dot dy" /><div className="dot dg" />
             <span className="modal-title" id="modal-title">certificate</span>
             <button className="modal-close" id="modal-close">[ close ]</button>
           </div>
@@ -168,7 +169,6 @@ footer{border-top:1px solid var(--border);padding:2rem 0 3rem;text-align:center}
       <div className="grid-bg" />
       <div className="floating-cursor" />
       <div className="tbar">
-        <div className="dot dr" /><div className="dot dy" /><div className="dot dg" />
         <span className="tbar-title">travis-kirby ~ interactive-resume</span>
         <ul className="tbar-nav">
           <li><a href="#about">./about</a></li>
@@ -187,10 +187,8 @@ footer{border-top:1px solid var(--border);padding:2rem 0 3rem;text-align:center}
         <section id="about">
           <div className="sh"><span className="sn">[ 01 ]</span><h2>About</h2><div className="sl" /></div>
           <div className="about-text">
-            <p className="greeting">Hey, I&apos;m Travis — welcome to my interactive resume, because PDFs just don&apos;t cut it these days.</p>
-            <p>I&apos;m a paralegal candidate based in Los Angeles, wrapping up my certification at Cal State LA with a focus on eDiscovery and litigation support. I&apos;m looking for entry-level paralegal work at firms that deal with entertainment IP, complex litigation, or anywhere that needs someone who can bridge the gap between legal process and technical investigation.</p>
-            <p>My background is a bit unconventional — I spent years in the entertainment industry doing music supervision, film composing, and consulting before pivoting into law. That means I actually understand IP disputes from the business side, not just the legal theory. I&apos;ve also picked up digital forensics skills along the way through hands-on lab work and certifications, which gives me a toolkit most entry-level candidates don&apos;t have.</p>
-            <p>I&apos;m not just looking for any job — I want to be useful on day one. If your team needs someone who can manage eDiscovery workflows, understands document review platforms, and isn&apos;t afraid of the technical side of litigation support, <span className="accent-text">let&apos;s talk</span>.</p>
+            <p>Hey, I&apos;m Travis, and this is my digital resume. I built this site because I don&apos;t think PDF resumes get the job done these days. As a paralegal candidate seeking a role in eDiscovery and forensics, what better way to show off some of my tech savvy than with a custom website.</p>
+            <p>My background is a bit eclectic, and you can see it by downloading my <a href="/resume/Travis_Kirby_Resume2026.pdf" target="_blank" rel="noopener noreferrer">conventional resume here</a>. However, my purposes here are to highlight the directly applicable skills I already have in eDiscovery and forensics — as well as some I am working toward.</p>
           </div>
           <div className="detail-grid">
             <div className="d-item"><div className="d-label">// Location</div><div className="d-value">Los Angeles, CA</div></div>
@@ -204,27 +202,24 @@ footer{border-top:1px solid var(--border);padding:2rem 0 3rem;text-align:center}
 
         <section id="skills">
           <div className="sh"><span className="sn">[ 02 ]</span><h2>Skills</h2><div className="sl" /></div>
-          <div className="skills-section">
-            <div className="skills-cat">// eDiscovery &amp; Litigation Support</div>
-            <div className="skill-row"><span className="skill-name">DISCO Platform</span><div className="skill-bar-wrap"><div className="skill-bar green" style={{"--target":"85%"} as React.CSSProperties} /></div><span className="skill-level">Advanced</span></div>
-            <div className="skill-row"><span className="skill-name">Document Review</span><div className="skill-bar-wrap"><div className="skill-bar green" style={{"--target":"80%"} as React.CSSProperties} /></div><span className="skill-level">Advanced</span></div>
-            <div className="skill-row"><span className="skill-name">Legal Research</span><div className="skill-bar-wrap"><div className="skill-bar green" style={{"--target":"75%"} as React.CSSProperties} /></div><span className="skill-level">Proficient</span></div>
-            <div className="skill-row"><span className="skill-name">Civil Litigation</span><div className="skill-bar-wrap"><div className="skill-bar green" style={{"--target":"70%"} as React.CSSProperties} /></div><span className="skill-level">Proficient</span></div>
-            <div className="skill-row"><span className="skill-name">IRAC Writing</span><div className="skill-bar-wrap"><div className="skill-bar green" style={{"--target":"70%"} as React.CSSProperties} /></div><span className="skill-level">Proficient</span></div>
-            <div className="skill-row"><span className="skill-name">Copyright / IP</span><div className="skill-bar-wrap"><div className="skill-bar green" style={{"--target":"65%"} as React.CSSProperties} /></div><span className="skill-level">Proficient</span></div>
-          </div>
-          <div className="skills-section">
-            <div className="skills-cat">// Digital Forensics</div>
-            <div className="skill-row"><span className="skill-name">FTK Imager</span><div className="skill-bar-wrap"><div className="skill-bar blue" style={{"--target":"60%"} as React.CSSProperties} /></div><span className="skill-level">Intermediate</span></div>
-            <div className="skill-row"><span className="skill-name">Autopsy</span><div className="skill-bar-wrap"><div className="skill-bar blue" style={{"--target":"55%"} as React.CSSProperties} /></div><span className="skill-level">Intermediate</span></div>
-            <div className="skill-row"><span className="skill-name">Kali Linux</span><div className="skill-bar-wrap"><div className="skill-bar blue" style={{"--target":"50%"} as React.CSSProperties} /></div><span className="skill-level">Intermediate</span></div>
-            <div className="skill-row"><span className="skill-name">Wireshark</span><div className="skill-bar-wrap"><div className="skill-bar blue" style={{"--target":"45%"} as React.CSSProperties} /></div><span className="skill-level">Developing</span></div>
-          </div>
-          <div className="skills-section">
-            <div className="skills-cat">// Technical</div>
-            <div className="skill-row"><span className="skill-name">Network Forensics</span><div className="skill-bar-wrap"><div className="skill-bar orange" style={{"--target":"45%"} as React.CSSProperties} /></div><span className="skill-level">Developing</span></div>
-            <div className="skill-row"><span className="skill-name">Incident Response</span><div className="skill-bar-wrap"><div className="skill-bar orange" style={{"--target":"40%"} as React.CSSProperties} /></div><span className="skill-level">Developing</span></div>
-            <div className="skill-row"><span className="skill-name">Malware Analysis</span><div className="skill-bar-wrap"><div className="skill-bar orange" style={{"--target":"35%"} as React.CSSProperties} /></div><span className="skill-level">Learning</span></div>
+          <div className="skills-columns">
+            <div className="skills-section">
+              <div className="skills-cat">// eDiscovery &amp; Litigation Support</div>
+              <div className="skill-row"><span className="skill-name">DISCO eDiscovery</span><div className="skill-bar-wrap"><div className="skill-bar green" style={{"--target":"85%"} as React.CSSProperties} /></div><span className="skill-level">Advanced</span></div>
+              <div className="skill-row"><span className="skill-name">Westlaw</span><div className="skill-bar-wrap"><div className="skill-bar green" style={{"--target":"80%"} as React.CSSProperties} /></div><span className="skill-level">Advanced</span></div>
+              <div className="skill-row"><span className="skill-name">Document Review</span><div className="skill-bar-wrap"><div className="skill-bar green" style={{"--target":"80%"} as React.CSSProperties} /></div><span className="skill-level">Advanced</span></div>
+              <div className="skill-row"><span className="skill-name">Legal Research</span><div className="skill-bar-wrap"><div className="skill-bar green" style={{"--target":"75%"} as React.CSSProperties} /></div><span className="skill-level">Proficient</span></div>
+              <div className="skill-row"><span className="skill-name">Drafting Legal Briefs and Memoranda</span><div className="skill-bar-wrap"><div className="skill-bar green" style={{"--target":"70%"} as React.CSSProperties} /></div><span className="skill-level">Proficient</span></div>
+              <div className="skill-row"><span className="skill-name">Copyright/IP Research and Registration</span><div className="skill-bar-wrap"><div className="skill-bar green" style={{"--target":"65%"} as React.CSSProperties} /></div><span className="skill-level">Proficient</span></div>
+            </div>
+            <div className="skills-section">
+              <div className="skills-cat">// Digital Forensics</div>
+              <div className="skill-row"><span className="skill-name">FTK Imager</span><div className="skill-bar-wrap"><div className="skill-bar blue" style={{"--target":"60%"} as React.CSSProperties} /></div><span className="skill-level">Intermediate</span></div>
+              <div className="skill-row"><span className="skill-name">Autopsy</span><div className="skill-bar-wrap"><div className="skill-bar blue" style={{"--target":"55%"} as React.CSSProperties} /></div><span className="skill-level">Intermediate</span></div>
+              <div className="skill-row"><span className="skill-name">Kali Linux</span><div className="skill-bar-wrap"><div className="skill-bar blue" style={{"--target":"50%"} as React.CSSProperties} /></div><span className="skill-level">Intermediate</span></div>
+              <div className="skill-row"><span className="skill-name">OSINT</span><div className="skill-bar-wrap"><div className="skill-bar blue" style={{"--target":"65%"} as React.CSSProperties} /></div><span className="skill-level">Proficient</span></div>
+              <div className="skill-row"><span className="skill-name">Wireshark</span><div className="skill-bar-wrap"><div className="skill-bar blue" style={{"--target":"35%"} as React.CSSProperties} /></div><span className="skill-level">Developing</span></div>
+            </div>
           </div>
         </section>
 
@@ -261,8 +256,8 @@ footer{border-top:1px solid var(--border);padding:2rem 0 3rem;text-align:center}
           <div className="sh"><span className="sn">[ 05 ]</span><h2>Contact</h2><div className="sl" /></div>
           <div className="contact-text">Ready to bring eDiscovery fluency, litigation support skills, and a technical edge to your team. Let&apos;s connect.</div>
           <div className="contact-grid">
-            <a className="contact-row" href="mailto:placeholder@email.com"><span className="cr-label">Email</span><span className="cr-value">placeholder@email.com</span><span className="cr-arrow">→</span></a>
-            <a className="contact-row" href="https://linkedin.com/in/placeholder" target="_blank" rel="noopener noreferrer"><span className="cr-label">LinkedIn</span><span className="cr-value">linkedin.com/in/placeholder</span><span className="cr-arrow">→</span></a>
+            <a className="contact-row" href="mailto:thelegaltraviskirby@outlook.com"><span className="cr-label">Email</span><span className="cr-value">thelegaltraviskirby@outlook.com</span><span className="cr-arrow">→</span></a>
+            <a className="contact-row" href="https://www.linkedin.com/in/travismkirby/" target="_blank" rel="noopener noreferrer"><span className="cr-label">LinkedIn</span><span className="cr-value">linkedin.com/in/travismkirby</span><span className="cr-arrow">→</span></a>
             <a className="contact-row" href="https://github.com/nonmammalcamel" target="_blank" rel="noopener noreferrer"><span className="cr-label">GitHub</span><span className="cr-value">github.com/nonmammalcamel</span><span className="cr-arrow">→</span></a>
           </div>
         </section>
@@ -295,16 +290,16 @@ footer{border-top:1px solid var(--border);padding:2rem 0 3rem;text-align:center}
         observer.observe(skillsSection);
 
         var commands = {
-          help: '<span class="cmd">Available commands:<\\/span>\\n  about      — who I am\\n  skills     — technical proficiencies\\n  certs      — certifications & credentials\\n  refs       — professional references\\n  contact    — get in touch\\n  tools      — forensic tools I use\\n  education  — academic background\\n  clear      — clear terminal output\\n  resume     — download resume (coming soon)',
+          help: '<span class="cmd">Available commands:<\\/span>\\n  about      — who I am\\n  skills     — technical proficiencies\\n  certs      — certifications & credentials\\n  refs       — professional references\\n  contact    — get in touch\\n  tools      — forensic tools I use\\n  education  — academic background\\n  clear      — clear terminal output\\n  resume     — download resume',
           about: '<span class="cmd">Travis M. Kirby<\\/span>\\n  Paralegal candidate in Los Angeles\\n  specializing in eDiscovery and litigation support.\\n  Looking for entry-level paralegal roles at firms\\n  handling entertainment IP or complex litigation.\\n  Also pursuing EC-Council CHFI certification.',
-          skills: '<span class="cmd">Core Skills:<\\/span>\\n  ├─ eDiscovery workflows & document review\\n  ├─ DISCO, Logikcull, Relativity platforms\\n  ├─ Legal research & IRAC writing\\n  ├─ Civil litigation support\\n  ├─ Copyright & IP law\\n  ├─ Forensic imaging & acquisition\\n  └─ Network traffic analysis',
+          skills: '<span class="cmd">Core Skills:<\\/span>\\n  ├─ DISCO eDiscovery platform\\n  ├─ Westlaw legal research\\n  ├─ Document review workflows\\n  ├─ Drafting legal briefs & memoranda\\n  ├─ Copyright/IP research & registration\\n  ├─ FTK Imager, Autopsy, Kali Linux\\n  ├─ OSINT investigations\\n  └─ Wireshark packet analysis',
           certs: '<span class="cmd">Certifications:<\\/span>\\n  <span style="color:var(--accent)">■<\\/span> Cyber Forensics Intro — Great Learning\\n  <span style="color:var(--accent)">■<\\/span> DISCO Data Management — DISCO University\\n  <span style="color:var(--accent)">■<\\/span> DISCO Search & Review — DISCO University\\n  <span style="color:var(--orange)">■<\\/span> CA Paralegal Certificate — In Progress\\n  <span style="color:var(--muted)">□<\\/span> Fortinet NSE 1-3 — Planned\\n  <span style="color:var(--muted)">□<\\/span> ACI, DFE, CHFI — Planned',
           refs: '<span class="cmd">References:<\\/span>\\n  ├─ Jane Doe, Esq. — Senior Litigation Partner\\n  ├─ John Smith — Director of eDiscovery\\n  ├─ Dr. Sarah Chen — Professor, Legal Studies\\n  └─ Michael Torres — Sr. Digital Forensics Analyst\\n  Contact details available upon request.',
           references: '<span class="cmd">References:<\\/span>\\n  ├─ Jane Doe, Esq. — Senior Litigation Partner\\n  ├─ John Smith — Director of eDiscovery\\n  ├─ Dr. Sarah Chen — Professor, Legal Studies\\n  └─ Michael Torres — Sr. Digital Forensics Analyst\\n  Contact details available upon request.',
-          contact: '<span class="cmd">Contact:<\\/span>\\n  Email    → placeholder@email.com\\n  LinkedIn → linkedin.com/in/placeholder\\n  GitHub   → github.com/nonmammalcamel',
-          tools: '<span class="cmd">Tools:<\\/span>\\n  ├─ DISCO — eDiscovery platform\\n  ├─ FTK Imager — forensic imaging\\n  ├─ Autopsy — disk analysis\\n  ├─ Kali Linux — security toolkit\\n  ├─ Wireshark — packet capture\\n  └─ VMware Fusion — lab environments',
+          contact: '<span class="cmd">Contact:<\\/span>\\n  Email    → thelegaltraviskirby@outlook.com\\n  LinkedIn → linkedin.com/in/travismkirby\\n  GitHub   → github.com/nonmammalcamel',
+          tools: '<span class="cmd">Tools:<\\/span>\\n  ├─ DISCO — eDiscovery platform\\n  ├─ Westlaw — legal research\\n  ├─ FTK Imager — forensic imaging\\n  ├─ Autopsy — disk analysis\\n  ├─ Kali Linux — security toolkit\\n  ├─ OSINT frameworks\\n  └─ Wireshark — packet capture',
           education: '<span class="cmd">Education:<\\/span>\\n  ├─ Paralegal Certificate (In Progress)\\n  │  Cal State LA\\n  ├─ B.A. Music Production\\n  │  The Evergreen State College\\n  └─ B.S. Mathematics\\n     The Evergreen State College',
-          resume: '<span class="cmd">Resume download coming soon.<\\/span>\\n  Check back after deployment.'
+          resume: '<span class="cmd">Downloading resume...<\\/span>\\n  Opening PDF in new tab.',
         };
 
         var termInput = document.getElementById('term-input');
@@ -316,6 +311,9 @@ footer{border-top:1px solid var(--border);padding:2rem 0 3rem;text-align:center}
             this.value = '';
             if (!cmd) return;
             if (cmd === 'clear') { termOutput.innerHTML = ''; return; }
+            if (cmd === 'resume') {
+              window.open('/resume/Travis_Kirby_Resume2026.pdf', '_blank');
+            }
             var sectionMap = { about:'about', skills:'skills', certs:'certs', refs:'references', references:'references', contact:'contact' };
             if (sectionMap[cmd]) {
               var el = document.getElementById(sectionMap[cmd]);
