@@ -78,9 +78,9 @@ h2{font-family:var(--heading);font-size:2rem;font-weight:700;letter-spacing:-.02
 .skill-name{font-family:var(--mono);font-size:1.01rem;color:var(--ink);width:auto;flex:1;flex-shrink:0}
 .skill-bar-wrap{width:120px;height:5px;background:rgba(30,45,61,.5);border-radius:3px;overflow:hidden;flex-shrink:0}
 .skill-bar{height:100%;border-radius:3px;width:0%;transition:width 1.2s cubic-bezier(.22,1,.36,1)}
-.skill-bar.green{background:rgba(0,255,136,.45);box-shadow:none}
-.skill-bar.blue{background:rgba(0,196,255,.45);box-shadow:none}
-.skill-bar.orange{background:rgba(255,170,0,.45);box-shadow:none}
+.skill-bar.green{background:rgba(0,255,136,.8);box-shadow:0 0 6px var(--accent-glow)}
+.skill-bar.blue{background:rgba(0,196,255,.8);box-shadow:0 0 6px rgba(0,196,255,.15)}
+.skill-bar.orange{background:rgba(255,170,0,.8);box-shadow:0 0 6px rgba(255,170,0,.15)}
 .skill-bar.animated{width:var(--target)}
 .skill-level{font-family:var(--mono);font-size:.84rem;color:var(--muted);width:100px;text-align:right;flex-shrink:0}
 .certs-grid{display:grid;gap:2px}
@@ -206,18 +206,16 @@ footer{border-top:1px solid var(--border);padding:2rem 0 3rem;text-align:center}
             <div className="skills-section">
               <div className="skills-cat">// eDiscovery &amp; Litigation Support</div>
               <div className="skill-row"><span className="skill-name">DISCO eDiscovery</span><div className="skill-bar-wrap"><div className="skill-bar green" style={{"--target":"85%"} as React.CSSProperties} /></div><span className="skill-level">Advanced</span></div>
-              <div className="skill-row"><span className="skill-name">Westlaw</span><div className="skill-bar-wrap"><div className="skill-bar green" style={{"--target":"80%"} as React.CSSProperties} /></div><span className="skill-level">Advanced</span></div>
+              <div className="skill-row"><span className="skill-name">Legal Research (Westlaw)</span><div className="skill-bar-wrap"><div className="skill-bar green" style={{"--target":"80%"} as React.CSSProperties} /></div><span className="skill-level">Advanced</span></div>
               <div className="skill-row"><span className="skill-name">Document Review</span><div className="skill-bar-wrap"><div className="skill-bar green" style={{"--target":"80%"} as React.CSSProperties} /></div><span className="skill-level">Advanced</span></div>
-              <div className="skill-row"><span className="skill-name">Legal Research</span><div className="skill-bar-wrap"><div className="skill-bar green" style={{"--target":"75%"} as React.CSSProperties} /></div><span className="skill-level">Proficient</span></div>
-              <div className="skill-row"><span className="skill-name">Drafting Legal Briefs and Memoranda</span><div className="skill-bar-wrap"><div className="skill-bar green" style={{"--target":"70%"} as React.CSSProperties} /></div><span className="skill-level">Proficient</span></div>
-              <div className="skill-row"><span className="skill-name">Copyright/IP Research and Registration</span><div className="skill-bar-wrap"><div className="skill-bar green" style={{"--target":"65%"} as React.CSSProperties} /></div><span className="skill-level">Proficient</span></div>
+              <div className="skill-row"><span className="skill-name">Legal Briefs and Memoranda</span><div className="skill-bar-wrap"><div className="skill-bar green" style={{"--target":"70%"} as React.CSSProperties} /></div><span className="skill-level">Proficient</span></div>
             </div>
             <div className="skills-section">
               <div className="skills-cat">// Digital Forensics</div>
               <div className="skill-row"><span className="skill-name">FTK Imager</span><div className="skill-bar-wrap"><div className="skill-bar blue" style={{"--target":"60%"} as React.CSSProperties} /></div><span className="skill-level">Intermediate</span></div>
               <div className="skill-row"><span className="skill-name">Autopsy</span><div className="skill-bar-wrap"><div className="skill-bar blue" style={{"--target":"55%"} as React.CSSProperties} /></div><span className="skill-level">Intermediate</span></div>
               <div className="skill-row"><span className="skill-name">Kali Linux</span><div className="skill-bar-wrap"><div className="skill-bar blue" style={{"--target":"50%"} as React.CSSProperties} /></div><span className="skill-level">Intermediate</span></div>
-              <div className="skill-row"><span className="skill-name">OSINT</span><div className="skill-bar-wrap"><div className="skill-bar blue" style={{"--target":"65%"} as React.CSSProperties} /></div><span className="skill-level">Proficient</span></div>
+              <div className="skill-row"><span className="skill-name">OSINT</span><div className="skill-bar-wrap"><div className="skill-bar blue" style={{"--target":"48%"} as React.CSSProperties} /></div><span className="skill-level">Proficient</span></div>
               <div className="skill-row"><span className="skill-name">Wireshark</span><div className="skill-bar-wrap"><div className="skill-bar blue" style={{"--target":"35%"} as React.CSSProperties} /></div><span className="skill-level">Developing</span></div>
             </div>
           </div>
