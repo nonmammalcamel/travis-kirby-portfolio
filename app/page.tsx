@@ -102,14 +102,14 @@ a.cc .cc-name::after{content:' ↗';font-size:.79rem;color:var(--accent);opacity
 .cc-issuer{font-family:var(--mono);font-size:.84rem;color:var(--muted);letter-spacing:.06em}
 .cc-status{font-family:var(--mono);font-size:.84rem;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .6rem;border:1px solid;flex-shrink:0}
 .certs-grid{max-width:80%}
-.cc-sub{margin-left:2.5rem;border-left:2px solid var(--accent);position:relative}
+.cc-sub{margin-left:2.5rem;position:relative;border-left:none}
 .cc-sub .cc-left{padding-left:.75rem}
 .cc-sub .cc-icon{display:none}
-.cc-sub::after{content:'';position:absolute;left:-2px;top:50%;width:1.25rem;height:2px;background:var(--accent)}
-.cc-sub:last-of-type{border-left-color:transparent}
-.cc-sub:last-of-type::before{content:'';position:absolute;left:-2px;top:0;height:50%;width:2px;background:var(--accent)}
+.cc-sub::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--accent)}
+.cc-sub::after{content:'';position:absolute;left:0;top:50%;width:1.25rem;height:2px;background:var(--accent)}
+.cc-sub:last-of-type::before{bottom:50%}
 .cc-parent{position:relative}
-.cc-parent::after{content:'';position:absolute;left:calc(2.5rem + 14px);bottom:-1px;width:2px;height:calc(50% + 1px);background:var(--accent)}
+.cc-parent::after{content:'';position:absolute;left:2.5rem;bottom:0;width:2px;height:50%;background:var(--accent);z-index:2}
 .st-e{color:var(--accent);border-color:var(--accent);text-shadow:0 0 8px var(--accent-glow)}
 .st-ip{color:var(--orange);border-color:var(--orange)}
 .st-p{color:var(--muted);border-color:var(--border)}
